@@ -19,7 +19,7 @@ def cleanUpList(word_count, word_list):
 def generateSentance(word_count, word_list):
   list_length = len(word_list)
   sentence_words = []
-  for i in range(5):
+  for i in range(word_count):
     random_word = word_list[random.randint(0, list_length)]
     sentence_words.append(random_word)
   merged_words = " ".join(sentence_words)
