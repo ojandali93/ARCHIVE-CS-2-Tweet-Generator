@@ -13,24 +13,17 @@ def histogramList(word_text):
   word_list = []
   for word in word_text:
     for record in word_list:
-      if record[0] == word:
-        record[1] = record[1] + 1
-    else:
       new_record = []
-      new_record.append(word)
-      new_record.append(1)
-      word_list.append(new_record)
-  print(word_list)
-  # sortWordList(word_list)
-
-# def sortWordList(word_list):
-#   histogram_list = []
-#   for record in word_list:
-#     if len(histogram_list) == 0:
-#       histogram_list.append(record)
-#     else:
-#       for check_record in histogram_list:
-#         if record[1]  check_record[1]
+      if record[0] == word:
+        print('incrementing record')
+        record[1] = record[1] + 1
+      else:
+        print('addiing new record')
+        new_record.append(word)
+        new_record.append(1)
+        print(new_record)
+        word_list.append(new_record)
+  return word_list
 
 def uniqueWords(word_text):
   dictionary = histogramDict(word_text)
@@ -58,3 +51,5 @@ if __name__ == '__main__':
   histogramList(word_text)
   uniqueWords(word_text)
   wordFrequency(word_check, word_text)
+  print(histogramDict(word_text))
+  print(histogramList(word_text))
