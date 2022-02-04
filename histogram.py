@@ -1,5 +1,13 @@
 import sys
 
+def readInFile(file_name):
+  f = open(file_name,'r', encoding='utf-8-sig')
+  blog_text = f.read()
+  clean_text = blog_text.replace(',','').replace('.','').replace('?','').replace("'",'').replace('"','').replace('-','')
+  word_text = clean_text.split(' ')
+  f.close()
+  return word_text
+
 def histogramDict(word_text):
   dictionary = {}
   for word in word_text:
@@ -25,9 +33,10 @@ def histogramList(word_text):
         word_list.append(new_record)
   return word_list
 
-def uniqueWords(word_text):
-  dictionary = histogramDict(word_text)
-  print("There are [" + str(len(dictionary)) + "] unique words in the text.")
+def uniqueWords(dictionary):
+  dictionary_length = len(dictionary)
+  print("There are [" + str(dictionary_length) + "] unique words in the text.")
+  return dictionary_length
 
 def wordFrequency(word, word_text):
   dictionary = histogramDict(word_text)
@@ -42,14 +51,9 @@ def wordFrequency(word, word_text):
 if __name__ == '__main__':
   file_name = sys.argv[1]
   word_check = sys.argv[2]
-  f = open(file_name,'r', encoding='utf-8-sig')
-  blog_text = f.read()
-  clean_text = blog_text.replace(',','').replace('.','').replace('?','').replace("'",'').replace('"','').replace('-','')
-  word_text = clean_text.split(' ')
-  f.close()
-  histogramDict(word_text)
-  histogramList(word_text)
-  uniqueWords(word_text)
-  wordFrequency(word_check, word_text)
-  print(histogramDict(word_text))
-  print(histogramList(word_text))
+  word_text = readInFile(file_name)
+  print(len(word_text))
+  dictionary = histogramDict(word_text)
+  print(dictionary)
+  uniqueWords(dictionary)
+  wordFrequency(word_check, dictionary)
